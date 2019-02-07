@@ -1,0 +1,135 @@
+
+
+{# src/AppBundle/Resources/views/Partenaire/index.html.twig #}
+
+{% extends "@App/layout.html.twig" %}
+
+{% block title %}
+    Partenaire - {{ parent() }}
+{% endblock %}
+
+{% block app_header %}
+    {{ asset('./img/slide/partenaire.jpg') }}{{ parent() }}
+{% endblock %}
+
+{% block app_body %}
+
+<!-- debut de l article -->
+<div id="breadcrumb" class="hoc clear">
+    <!-- debut du retour -->
+    <ul>
+        <li><a href="{{ path('app_home') }}">Manga</a></li>
+        <li><a href="{{ path('app_partenaire') }}">Partenaire</a></li>
+    </ul>
+    <!-- fin du retour -->
+</div>
+<!-- fin du header -->
+</div>
+
+
+<!-- ################################################################################################ -->
+</div>
+<!-- End Top Background Image Wrapper -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row3">
+
+
+
+
+        <br/>
+        <!-- main body -->
+        <!-- ################################################################################################ -->
+        <div class="content">
+            <p></p>
+            <table class="base">
+                <caption>
+
+                    {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+
+                    {# Les erreurs générales du formulaire. #}
+                    {{ form_errors(form) }}
+                    <fieldset>
+
+                        <legend>Description</legend>
+
+                        {# Génération manuelle et éclatée : #}
+                        <div class="form-group">
+                            {# Génération du label. #}
+                            {{ form_label(form.name, "Noms du type de produit", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+
+                            {# Affichage des erreurs pour ce champ précis. #}
+                            {{ form_errors(form.name) }}
+
+                            <div class="col-sm-10">
+                                {# Génération de l'input. #}
+                                {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                        </div>
+
+                    </fieldset>
+
+
+                    {# Pour le bouton, pas de label ni d'erreur, on affiche juste le widget #}
+                    {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'}}) }}
+
+                    {# Génération automatique des champs pas encore écrits.
+                       Dans cet exemple, ce serait le champ CSRF (géré automatiquement par Symfony !)
+                       et tous les champs cachés (type « hidden »). #}
+                    {{ form_rest(form) }}
+
+                    {# Fermeture de la balise <form> du formulaire HTML #}
+                    {{ form_end(form) }}
+
+                </caption>
+
+                <tr>
+                    <th>ID</th>
+                    <th>Titre de la categorie</th>
+
+                    <th>Supprimer</th>
+                </tr>
+                {% for product in listProduct %}
+                    <tr>
+
+                        <td> {{ product.id }}</td>
+                        <td><a href="{{ path('app_viewpartenaire', {'id': product.id}) }}"> {{ product.name }}</a></td>
+
+                        <td>
+                            <a href="{{ path('app_productdelete',{'id': product.id}) }}">
+                                X
+                            </a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr><td colspan="4">Pas (encore !) de categorie mais rester au courant</td></tr>
+                {% endfor %}
+
+            </table>
+        </br>
+
+            <!-- ################################################################################################ -->
+        </div>
+        <!-- ################################################################################################ -->
+        <!-- / main body -->
+        <div class="clear"></div>
+
+</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+    <div class="wrapper row2 bgded overlay" style="background-image:url('{{ asset('../img/slide/cop.jpg') }}');">
+    <section class="hoc cta clear">
+        <!-- ################################################################################################ -->
+        <div class="sectiontitle">
+            <h6 class="heading">Vous avez quelque chose a dire ?</h6>
+            <p>N hesiter pas a contacter le staff du site pour le moindre probleme</p>
+        </div>
+        <ul class="nospace inline pushright">
+            <li><a class="btn" href="{{ path('app_contact') }}">Contacter nous !</a></li>
+        </ul>
+        <!-- ################################################################################################ -->
+    </section>
+</div>
+{% endblock %}

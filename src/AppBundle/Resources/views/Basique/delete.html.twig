@@ -1,0 +1,50 @@
+
+{% extends "@App/layout.html.twig" %}
+
+{% block title %}
+    Convention - {{ parent() }}
+{% endblock %}
+
+{% block app_header %}
+    {{ asset('./img/slide/convention.jpg') }}{{ parent() }}
+{% endblock %}
+
+{%block body %}
+    <!-- debut de l article -->
+    <div id="breadcrumb" class="hoc clear">
+        <!-- debut du retour -->
+        <ul>
+            <li><a href="{{ path('app_contact') }}">Manga</a></li>
+
+        </ul>
+        <!-- fin du retour -->
+    </div>
+    <!-- fin du header -->
+    </div>
+    </div>
+    <!-- End Top Background Image Wrapper -->
+    <!-- ################################################################################################ -->
+    <!-- ################################################################################################ -->
+    <!-- ################################################################################################ -->
+    <div class="wrapper row3">
+        <main class="hoc container clear">
+            <h1>Page effacer convention</h1>
+            <p>Etes vous sure d effacer le message: {{ message.subject }}</p>
+            {# On met l'id de l'annonce dans la route de l'action du formulaire #}
+
+
+            <form action="{{ path('app_deletemessage', {'id': message.id}) }}" method="post">
+                <a href="{{ path('app_contact')}}" class="btn btn-default">
+                    <i class="glyphicon glyphicon-chevron-left"></i>
+                    Retour à l'annonce
+                </a>
+                {# Ici j'ai écrit le bouton de soumission à la main #}
+                <input type="submit" value="Supprimer" class="btn btn-danger" />
+                {# Ceci va générer le champ CSRF #}
+                {{ form_rest(form) }}
+            </form>
+
+
+        </main>
+    </div>
+{% endblock %}

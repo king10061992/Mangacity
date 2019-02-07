@@ -1,0 +1,45 @@
+{% extends "@App/layout.html.twig" %}
+
+{% block title %}
+    Partenaire - {{ parent() }}
+{% endblock %}
+
+{% block app_header %}
+    {{ asset('./img/slide/partenaire.jpg') }}{{ parent() }}
+{% endblock %}
+
+{%block body %}
+    <!-- debut de l article -->
+    <div id="breadcrumb" class="hoc clear">
+        <!-- debut du retour -->
+
+        <!-- fin du retour -->
+    </div>
+    <!-- fin du header -->
+    </div>
+</div>
+<!-- End Top Background Image Wrapper -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row3">
+<main class="hoc container clear">
+        <p>Etes vous sure d effacer le commentaire: {{ comments.id }}</p>
+        {# On met l'id de l'annonce dans la route de l'action du formulaire #}
+
+
+        <form action="{{ path('app_deleteCommentsPartenaire', {'id': comments.id}) }}" method="post">
+            <a href="{{ path('app_partenaire') }}" class="btn btn-default">
+                <i class="glyphicon glyphicon-chevron-left"></i>
+                Retour à l'annonce
+            </a>
+            {# Ici j'ai écrit le bouton de soumission à la main #}
+            <input type="submit" value="Supprimer" class="btn btn-danger" />
+            {# Ceci va générer le champ CSRF #}
+            {{ form_rest(formComments) }}
+        </form>
+
+
+    </main>
+</div>
+{% endblock %}

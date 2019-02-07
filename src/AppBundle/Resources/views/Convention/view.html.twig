@@ -1,0 +1,126 @@
+{# src/AppBundle/Resources/views/Convention/view.html.twig #}
+
+{% extends "@App/layout.html.twig" %}
+
+{% block title %}
+    Convention - {{ parent() }}
+{% endblock %}
+
+{% block app_header %}
+    {{ asset(convention.image.webPath) }}{{ parent() }}
+{% endblock %}
+
+{% block app_body %}
+
+    <!-- debut de l article -->
+<div id="breadcrumb" class="hoc clear">
+    <!-- debut du retour -->
+    <ul>
+        <li><a href="{{ path('app_home') }}">Manga</a></li>
+        <li><a href="{{ path('app_convention') }}">Convention</a></li>
+        <li><a href="{{ path('app_viewconvention', {'id': convention.id}) }}">{{ convention.id }} </a> </li>
+    </ul>
+    <!-- fin du retour -->
+</div>
+<!-- fin du header -->
+</div>
+
+<!-- debut de l article -->
+<!-- ################################################################################################ -->
+<div class="wrapper row3">
+    <main class="hoc container clear">
+        <!-- corps de l article -->
+        <!-- ################################################################################################ -->
+        <div class="content">
+            <p>
+                <a href="{{ path('app_editconvention',{'id': convention.id }) }}"> Modifier </a>  |
+                <a href="{{ path('app_deleteconvention',{'id': convention.id }) }}"> Supprimer</a> le partenaire
+            </p>
+            <!-- ################################################################################################ -->
+            <h1>{{ convention.title }}: le {{ convention.dateStart|date('d/m/Y') }}</h1>
+            {# On vérifie qu'une image soit bien associée à l'annonce #}
+            {% if convention.image is not null %}
+                <img class="imgr borderedbox inspace-5"
+                     style="width: 50%"
+                     src="{{ asset(convention.poster.webPath) }}"
+                     alt="{{ convention.poster.alt }}"
+                >
+            {% endif %}
+
+            <p>
+                {{ convention.content }}
+            </p>
+
+            <h1>Detail supplementaire</h1>
+            <ul>
+                <li><strong>Date et heure de l event</strong>
+                    <ul>
+                        <li><strong>L event</strong>
+                            commence le {{ convention.dateStart|date('d/m/Y')}} a {{ convention.dateStart|date('H:i') }}
+                            et fini le {{ convention.dateEnd|date('d/m/Y')}} a {{ convention.dateEnd|date('H:i') }}
+                        </li>
+
+                    </ul>
+                </li>
+                <li>
+                    <strong>Participant</strong>
+                    <ul>
+                        {% for partenaire in convention.partenaire %}
+                            <li><a href="{{ path('app_viewpartenaire',{'id':partenaire.id}) }}">{{ partenaire.name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </li>
+                <li>
+                    <strong>Coordonnee:</strong>
+                    <ul>
+                        <li><strong>Endroit:</strong> {{ convention.street}} - <strong>N*</strong> {{ convention.number }}</li>
+                        <li>
+                            <strong>Code postal:</strong>
+                            <a href="{{ path('app_codeconvention',{'code':convention.code}) }}">{{ convention.code }}</a> -
+                            <strong>Localiter:</strong>
+                            <a href="{{ path('app_localityconvention',{'locality':convention.locality}) }}">{{ convention.locality}}</a>
+                        </li>
+
+                    </ul>
+                </li>
+                <li>
+                    <strong>Contact</strong>
+                    <ul>
+                        <li><strong>Site Web:</strong> <a href="{{ convention.website}}">Site officiel</a></li>
+                        <li><strong>Facebook:</strong> <a href="{{ convention.facebook}}">Facebook</a></li>
+                        <li><strong>Telephone:</strong> {{ convention.mobile}}</li>
+                        <li><strong>Email:</strong> {{ convention.email}}</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <!-- ################################################################################################ -->
+</div>
+<!-- ################################################################################################ -->
+<!-- / main body -->
+<div class="clear"></div>
+</main>
+</div>
+
+
+
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row2 bgded overlay" style="background-image:url({{ asset('../img/slide/cop.jpg') }});">
+    <section class="hoc cta clear">
+        <!-- ################################################################################################ -->
+        <div class="sectiontitle">
+            <h6 class="heading">Vous avez quelque chose a dire ?</h6>
+            <p>N hesiter pas a contacter le staff du site pour le moindre probleme</p>
+        </div>
+        <ul class="nospace inline pushright">
+            <li><a class="btn" href="{{ path('app_contact') }}">Contacter nous !</a></li>
+        </ul>
+        <!-- ################################################################################################ -->
+    </section>
+</div>
+
+{% endblock %}
+    

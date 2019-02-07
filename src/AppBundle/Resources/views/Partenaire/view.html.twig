@@ -1,0 +1,187 @@
+{# src/AppBundle/Resources/views/Partenaire/view.html.twig #}
+
+{% extends "@App/layout.html.twig" %}
+
+{% block title %}
+    Partenaire - {{ parent() }}
+{% endblock %}
+
+{% block app_header %}
+    {{ asset(Partenaire.image.webPath) }}{{ parent() }}
+{% endblock %}
+
+{% block app_body %}
+
+    <!-- debut de l article -->
+<div id="breadcrumb" class="hoc clear">
+    <!-- debut du retour -->
+    <ul>
+        <li><a href="{{ path('app_home') }}">Manga</a></li>
+        <li><a href="{{ path('app_partenaire') }}">Partenaire</a></li>
+        <li><a href="{{ path('app_viewpartenaire', {'id': Partenaire.id}) }}">{{ Partenaire.id }}</a></li>
+    </ul>
+    <!-- fin du retour -->
+</div>
+<!-- fin du header -->
+</div>
+
+<!-- debut de l article -->
+<!-- ################################################################################################ -->
+<div class="wrapper row3">
+    <main class="hoc container clear">
+        <!-- corps de l article -->
+        <!-- ################################################################################################ -->
+        <div class="content">
+            <!-- ################################################################################################ -->
+            <h1>{{ Partenaire.name }}</h1>
+
+            {# On vérifie qu'une image soit bien associée à l'annonce #}
+            {% if Partenaire.image is not null %}
+                <img class="imgr borderedbox inspace-5"
+                     style="width: 50%"
+
+                     src="{{ asset(Partenaire.flyers.webPath) }}"
+                     alt="{{ Partenaire.flyers.alt }}"
+                >
+            {% endif %}
+
+            <p>
+               <strong>Description : </strong>  {{ Partenaire.content }}
+            </p>
+
+            <div>
+                <strong>Le magasin vend:</strong>
+                <ul>
+                    {% for product in Partenaire.product %}
+                        <li>{{ product.name }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div>
+
+                </div>
+            <h1>Nos coordonnees</h1>
+            <ul>
+                <li><strong>Endroit:</strong> {{ Partenaire.street }} - <strong>N*:</strong> {{ Partenaire.number }}</li>
+                <li><strong>Code postal:</strong> <a href="{{ path('app_codepartenaire',{'code':Partenaire.code}) }}">{{ Partenaire.code }}</a>
+                    - <strong>Localiter:</strong> <a href="{{ path('app_localitypartenaire',{'locality':Partenaire.locality}) }}">{{ Partenaire.locality }}</a>
+                </li>
+                </br>
+                <li><strong>Heure d ouverture</strong> {{ Partenaire.timeStart|date('H:i') }}</li>
+                <li><strong>Heure de fermeture:</strong> {{ Partenaire.timeEnd|date('H:i') }}</li>
+                <li><strong>Particularite:</strong> {{ Partenaire.exception }}</li>
+                <br/>
+            </ul>
+            <h1>Nous contacter</h1>
+            <ul>
+                <li><strong>Site:</strong> <a href="{{ Partenaire.webSite }}"> Site officiel </a></li>
+                <li><strong>Facebook:</strong> <a href="{{ Partenaire.facebook }}"> Facebook</a> </li>
+                <li><strong>Telephone:</strong>{{ Partenaire.mobile }}</li>
+                <li><strong>Email:</strong>{{ Partenaire.email }}</li>
+            </ul>
+        </div>
+        <div id="comments">
+            <h2>Commentaire</h2>
+            <ul>
+                {% for comments in ListComments %}
+                    <li>
+                        <article>
+                            <header>
+                                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                                <a href="{{ path('app_deleteCommentsPartenaire',{'id': comments.id }) }}">X</a>
+                                {% endif %}
+                                <address>
+                                    By <a href="#">{{ comments.author }}</a>
+                                </address>
+                                <time>{{ comments.date|date('d/m/Y H:i',"Europe/Paris") }}</time>
+                            </header>
+                            <div class="comcont">
+                                <p>{{ comments.content }}</p>
+                            </div>
+                        </article>
+                    </li>
+                {% else %}
+                    <li>Pas de commentaire pour l instant</li>
+                {% endfor %}
+            </ul>
+            <h2>Commenter</h2>
+
+            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                Connecté en tant que {{ app.user.username }}
+                -
+                <form action="#" method="post">
+
+                    <div class="well">
+                        {{ form_start(formComments, {'attr': {'class': 'form-horizontal'}}) }}
+
+                        {# Les erreurs générales du formulaire. #}
+                        {{ form_errors(formComments) }}
+                        <fieldset>
+
+                            <legend>Description</legend>
+
+
+
+                            {# Idem pour un autre champ. #}
+                            <div class="form-group">
+                                {{ form_label(formComments.content, "Contenu de l'annonce", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+                                {{ form_errors(formComments.content) }}
+                                <div class="col-sm-10">
+                                    {{ form_widget(formComments.content, {'attr': {'class': 'form-control'}}) }}
+                                </div>
+                            </div>
+
+                        </fieldset>
+
+
+
+                        {# Pour le bouton, pas de label ni d'erreur, on affiche juste le widget #}
+                        {{ form_widget(formComments.send, {'attr': {'class': 'btn btn-primary'}}) }}
+
+                        {# Génération automatique des champs pas encore écrits.
+                           Dans cet exemple, ce serait le champ CSRF (géré automatiquement par Symfony !)
+                           et tous les champs cachés (type « hidden »). #}
+                        {{ form_rest(formComments) }}
+
+                        {# Fermeture de la balise <form> du formulaire HTML #}
+                        {{ form_end(formComments) }}
+                    </div>
+
+                </form>
+                <li>Si vous voulez vous deconnecter <a href="{{ path('logout') }}" title="Deconnexion"><i class="fa fa-lg fa-sign-in"></i></a></li>
+            {% else %}
+                <p>Pour ecrire un commentaire merci de vous <a href="{{ path('login') }}">connecte</a></p>
+            {% endif %}
+
+        </div>
+    </main>
+        <!-- ################################################################################################ -->
+</div>
+<!-- ################################################################################################ -->
+<!-- / main body -->
+<div class="clear"></div>
+</main>
+</div>
+
+
+
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row2 bgded overlay" style="background-image:url({{ asset('../img/slide/cop.jpg') }});">
+    <section class="hoc cta clear">
+        <!-- ################################################################################################ -->
+        <div class="sectiontitle">
+            <h6 class="heading">Vous avez quelque chose a dire ?</h6>
+            <p>N'hesiter pas a contacter le staff du site pour le moindre probleme</p>
+        </div>
+        <ul class="nospace inline pushright">
+            <li><a class="btn" href="{{ path('app_contact') }}">Contacter nous !</a></li>
+        </ul>
+        <!-- ################################################################################################ -->
+    </section>
+</div>
+
+{% endblock %}
+    

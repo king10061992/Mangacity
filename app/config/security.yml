@@ -1,0 +1,32 @@
+security:
+
+    encoders:
+        UserBundle\Entity\User: bcrypt
+
+    role_hierarchy:
+        ROLE_ADMIN:       [ROLE_AUTEUR, ROLE_MODERATEUR]
+        ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+
+    providers:
+        main:
+            id: fos_user.user_provider.username
+
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        main:
+            provider: main
+            pattern:   ^/
+            anonymous: true
+            form_login:
+                login_path: fos_user_security_login
+                check_path: fos_user_security_check
+            logout:
+                path:       fos_user_security_logout
+                target:     fos_user_security_login
+
+    access_control:
+    - { path: ^/admin, roles: ROLE_ADMIN }
+    - { path: ^/add, roles: ROLE_AUTEUR }

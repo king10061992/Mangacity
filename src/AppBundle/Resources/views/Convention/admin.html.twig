@@ -1,0 +1,126 @@
+
+
+{# src/AppBundle/Resources/views/Partenaire/admin.html.twig #}
+
+{% extends "@App/layout.html.twig" %}
+
+{% block title %}
+    Convention-Admin - {{ parent() }}
+{% endblock %}
+
+{% block app_header %}
+    {{ asset('./img/slide/convention.jpg') }}{{ parent() }}
+{% endblock %}
+
+{% block app_body %}
+
+
+
+<!-- debut de l article -->
+<div id="breadcrumb" class="hoc clear">
+    <!-- debut du retour -->
+    <ul>
+        <li><a href="{{ path('app_home') }}">Manga</a></li>
+        <li><a href="{{ path('app_convention') }}">Convention</a></li>
+    </ul>
+    <!-- fin du retour -->
+</div>
+<!-- fin du header -->
+</div>
+
+<!-- End Top Background Image Wrapper -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row3">
+</br>
+        <!-- main body -->
+        <!-- ################################################################################################ -->
+        <div class="content">
+            <!-- ################################################################################################ -->
+            <p></p>
+                <table class="base">
+                    <caption><a href="{{ path('app_addconvention') }}"> Ajouter une convention</a></caption>
+                    <tr>
+                        <th>ID</th>
+
+                        <th>Title</th>
+                        <th>Rue</th>
+                        <th>N*</th>
+                        <th>Code</th>
+                        <th>Localite</th>
+                        <th>Debut</th>
+                        <th>Fin</th>
+                        <th>Site web</th>
+                        <th>facebbok</th>
+                        <th>Telephone</th>
+                        <th>Email</th>
+                        <th>Modifier</th>
+                        <th>Supprimer</th>
+                    </tr>
+                    {% for convention in listConvention %}
+                        <tr>
+
+                                <td> {{ convention.id }}</td>
+                                <td>
+                                    <a href="{{ path('app_viewconvention', {'id': convention.id}) }}">
+                                        {{ convention.title }}
+                                    </a>
+                                </td>
+                                <td> {{ convention.street }}</td>
+                                <td> {{ convention.number }}</td>
+                                <td> {{ convention.code }}</td>
+                                <td> {{ convention.locality }}</td>
+                                <td> {{ convention.dateStart|date('d/m/Y') }}</td>
+                                <td> {{ convention.dateEnd|date('d/m/Y') }}</td>
+                                <td> {{ convention.webSite }}</td>
+                                <td> {{ convention.facebook }}</td>
+                                <td> {{ convention.mobile}}</td>
+                                <td> {{ convention.email}}</td>
+                                <td>
+                                    <a href="{{ path('app_editconvention',{'id': convention.id}) }}">
+                                        Modifier
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ path('app_deleteconvention',{'id': convention.id}) }}">
+                                        X
+                                    </a>
+                                </td>
+                        </tr>
+                    {% else %}
+                        <tr><td colspan="14">Pas (encore !) de convention mais rester au courant</td></tr>
+                    {% endfor %}
+
+                </table>
+
+
+            <div>
+
+            <!-- ################################################################################################ -->
+            <!-- ################################################################################################ -->
+
+            <!-- ################################################################################################ -->
+        </div>
+        <!-- ################################################################################################ -->
+        <!-- / main body -->
+        <div class="clear"></div>
+</div>
+    <div class="text-center">{{ knp_pagination_render(listConvention) }}</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row2 bgded overlay" style="background-image:url('{{ asset('../img/slide/cop.jpg') }}');">
+    <section class="hoc cta clear">
+        <!-- ################################################################################################ -->
+        <div class="sectiontitle">
+            <h6 class="heading">Vous avez quelque chose a dire ?</h6>
+            <p>N hesiter pas a contacter le staff du site pour le moindre probleme</p>
+        </div>
+        <ul class="nospace inline pushright">
+            <li><a class="btn" href="{{ path('app_contact') }}">Contacter nous !</a></li>
+        </ul>
+        <!-- ################################################################################################ -->
+    </section>
+</div>
+{% endblock %}

@@ -1,0 +1,224 @@
+# src/AppBundle/Resources/config/routing.yml
+
+app_start:
+    path:      /
+    defaults:
+        _controller: AppBundle:Basique:home
+
+app_home:
+    path:      accueil
+    defaults:
+        _controller: AppBundle:Basique:home
+
+app_contact:
+    path:      contact
+    defaults:
+        _controller: AppBundle:Basique:contact
+
+app_messagerie:
+    path:      messagerie/{page}
+    defaults:
+        _controller: AppBundle:Basique:message
+        page:        1
+    requirements:
+        page: \d+
+
+app_viewmessage:
+    path:      messagerie/lecture/{id}
+    defaults:
+        _controller: AppBundle:Basique:view
+    requirements:
+        id: \d+
+
+app_deletemessage:
+    path:      messagerie/delete/{id}
+    defaults:
+        _controller: AppBundle:Basique:delete
+    requirements:
+        id: \d+
+
+app_convention:
+    path:      convention/{page}
+    defaults:
+        _controller: AppBundle:Convention:index
+        page:        1
+    requirements:
+        page: \d+
+
+app_streetconvention:
+    path:      convention/lieu:{street}/{page}
+    defaults:
+        _controller: AppBundle:Convention:street
+        page:       1
+    requirements:
+        page: \d+
+
+app_dateconvention:
+    path:      convention/date:{months}/{page}
+    defaults:
+        _controller: AppBundle:Convention:date
+        page:       1
+    requirements:
+        page: \d+
+
+app_localityconvention:
+    path:      convention/province:{locality}/{page}
+    defaults:
+        _controller: AppBundle:Convention:locality
+        page:        1
+    requirements:
+        page: \d+
+
+app_codeconvention:
+    path:      convention/code:{code}/{page}
+    defaults:
+        _controller: AppBundle:Convention:code
+        page:        1
+    requirements:
+        page: \d+
+
+app_adminconvention:
+    path:      convention/Admin/{page}
+    defaults:
+        _controller: AppBundle:Convention:admin
+        page:        1
+    requirements:
+        page: \d+
+
+app_viewconvention:
+    path:      /convention/article/{id}
+    defaults:
+        _controller: AppBundle:Convention:view
+    requirements:
+        id: \d+
+
+app_addconvention:
+    path:      convention/add
+    defaults:
+        _controller: AppBundle:Convention:add
+
+app_editconvention:
+    path:      convention/edit/{id}
+    defaults:
+        _controller: AppBundle:Convention:edit
+    requirements:
+        id: \d+
+
+app_deleteconvention:
+    path:      convention/delete/{id}
+    defaults:
+        _controller: AppBundle:Convention:delete
+    requirements:
+        id: \d+
+
+
+app_partenaire:
+    path:      partenaire/{page}
+    defaults:
+        _controller: AppBundle:Partenaire:index
+        page:        1
+    requirements:
+        page: \d+
+
+app_localitypartenaire:
+    path:      partenaire/province:{locality}/{page}
+    defaults:
+        _controller: AppBundle:Partenaire:locality
+        page:        1
+    requirements:
+        page: \d+
+
+app_codepartenaire:
+    path:      partenaire/code:{code}/{page}
+    defaults:
+        _controller: AppBundle:Partenaire:code
+        page:        1
+    requirements:
+        page: \d+
+
+app_tagpartenaire:
+    path:      partenaire/tag:{tag}/{page}
+    defaults:
+        _controller: AppBundle:Partenaire:tag
+        page:        1
+    requirements:
+        page: \d+
+
+app_admintag:
+    path:       Partenaire/tag
+    defaults:
+        _controller: AppBundle:Partenaire:adminTag
+
+app_deletetag:
+    path:   partenaire/tag/delete:{id}
+    defaults:
+        _controller: AppBundle:Partenaire:deleteTag
+
+app_commentspartenaire:
+    path:      partenaire/Admin/Comments/{page}
+    defaults:
+        _controller: AppBundle:Partenaire:comments
+        page:        1
+    requirements:
+        page: \d+
+
+app_deleteCommentsPartenaire:
+    path:      partenaire/Comments/delete:{id}
+    defaults:
+        _controller: AppBundle:Partenaire:deleteComments
+    requirements:
+        id: \d+
+
+app_adminpartenaire:
+    path:      partenaire/Admin/{page}
+    defaults:
+        _controller: AppBundle:Partenaire:admin
+        page:        1
+    requirements:
+        page: \d+
+
+app_viewpartenaire:
+    path:      /partenaire/article/{id}
+    defaults:
+        _controller: AppBundle:Partenaire:view
+    requirements:
+        id: \d+
+
+app_addpartenaire:
+    path:      partenaire/add
+    defaults:
+        _controller: AppBundle:Partenaire:add
+
+app_editpartenaire:
+    path:      partenaire/edit:{id}
+    defaults:
+        _controller: AppBundle:Partenaire:edit
+    requirements:
+        id: \d+
+
+app_deletepartenaire:
+    path:      partenaire/delete:{id}
+    defaults:
+        _controller: AppBundle:Partenaire:delete
+    requirements:
+        id: \d+
+
+app_searchpartenaire:
+    path:   partenaire/search:{name}
+    defaults:
+        _controller: AppBundle:Partenaire:answer
+
+app_searchconvention:
+    path:   partenaire/search:{title}
+    defaults:
+        _controller: AppBundle:Convention:answer
+
+app_productadmin:
+    path:   product/admin
+    defaults:
+        _controller: AppBundle:Product:admin
+
+app_productdelete:
+    path:   product/admin/delete:{id}
+    defaults:
+        _controller: AppBundle:Product:delete

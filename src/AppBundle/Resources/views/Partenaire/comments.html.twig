@@ -1,0 +1,95 @@
+
+
+{# src/AppBundle/Resources/views/Partenaire/index.html.twig #}
+
+{% extends "@App/layout.html.twig" %}
+
+{% block title %}
+    Partenaire - {{ parent() }}
+{% endblock %}
+
+{% block app_header %}
+    {{ asset('./img/slide/partenaire.jpg') }}{{ parent() }}
+{% endblock %}
+
+{% block app_body %}
+
+<!-- debut de l article -->
+<div id="breadcrumb" class="hoc clear">
+    <!-- debut du retour -->
+    <ul>
+        <li><a href="{{ path('app_home') }}">Manga</a></li>
+        <li><a href="{{ path('app_partenaire') }}">Partenaire</a></li>
+    </ul>
+    <!-- fin du retour -->
+</div>
+<!-- fin du header -->
+</div>
+
+
+<!-- ################################################################################################ -->
+</div>
+<!-- End Top Background Image Wrapper -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row3">
+
+
+
+
+        <br/>
+        <!-- main body -->
+        <!-- ################################################################################################ -->
+        <div class="content">
+            <p></p>
+            <table class="base">
+                <tr>
+                    <th>Date</th>
+                    <th>Auteur</th>
+                    <th>Content</th>
+                    <th>Article</th>
+                    <th>Effacer</th>
+                </tr>
+                {% for comments in listComments %}
+                    <tr>
+                        <td>{{ comments.date|date('h:i') }}</td>
+                        <td>{{ comments.author }}</td>
+                        <td>{{ comments.content }}</td>
+                        <td><a href="{{ path('app_viewpartenaire', {'id': comments.partenaire.id}) }}">{{ comments.partenaire.name }}</a></td>
+                        <td><a href="{{ path('app_deleteCommentsPartenaire',{'id': comments.id}) }}">X</a></td>
+                    </tr>
+                {% else %}
+                    <tr><td>Pas (encore !) de partenaire mais rester au courant</td></tr>
+                {% endfor %}
+
+            </table>
+
+            <!-- ################################################################################################ -->
+
+            <div class="text-center">{{ knp_pagination_render(listComments) }}</div>
+
+            <!-- ################################################################################################ -->
+        </div>
+        <!-- ################################################################################################ -->
+        <!-- / main body -->
+        <div class="clear"></div>
+
+</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+    <div class="wrapper row2 bgded overlay" style="background-image:url('{{ asset('../img/slide/cop.jpg') }}');">
+    <section class="hoc cta clear">
+        <!-- ################################################################################################ -->
+        <div class="sectiontitle">
+            <h6 class="heading">Vous avez quelque chose a dire ?</h6>
+            <p>N hesiter pas a contacter le staff du site pour le moindre probleme</p>
+        </div>
+        <ul class="nospace inline pushright">
+            <li><a class="btn" href="{{ path('app_contact') }}">Contacter nous !</a></li>
+        </ul>
+        <!-- ################################################################################################ -->
+    </section>
+</div>
+{% endblock %}

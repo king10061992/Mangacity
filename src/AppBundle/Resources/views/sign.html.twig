@@ -1,0 +1,11 @@
+{# src/AppBundle/Resources/views/layout.html.twig #}
+
+{% extends "sign.html.twig" %}
+
+{% block login %}
+
+    {# On définit un nouveau bloc, que les vues du bundle pourront remplir #}
+    {% block app_login %}
+    {% endblock %}
+
+{% endblock %}

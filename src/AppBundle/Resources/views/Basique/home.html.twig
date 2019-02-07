@@ -1,0 +1,127 @@
+{# src/AppBundle/Resources/views/Advert/home.html.twig #}
+
+{% extends "@App/layout.html.twig" %}
+
+{% block title %}
+    Accueil - {{ parent() }}
+{% endblock %}
+
+{% block app_header %}
+    {{ asset('./img/slide/index.jpg') }}{{ parent() }}
+{% endblock %}
+
+{% block app_body %}
+
+    <div id="pageintro" class="hoc clear">
+        <!-- debut article presentation -->
+        <article>
+            <p>Tout vos sortie sur</p>
+            <h3 class="heading">Manga City</h3>
+            <footer>
+                <ul class="nospace inline pushright">
+                    <li><a class="btn inverse" href="{{ path('app_convention') }}">Convention</a></li>
+                    <li><a class="btn inverse" href="{{ path('app_partenaire') }}">Partenaire</a></li>
+                </ul>
+            </footer>
+        </article>
+        <!-- Fin article presentation -->
+    </div>
+    </div>
+
+    <!-- ################################################################################################ -->
+    <div class="wrapper row3">
+        <main class="hoc container clear">
+            <!-- main body -->
+            <!-- ################################################################################################ -->
+
+            <article class="group">
+                <div class="one_half first">
+                    <h6 class="heading">Qui somme nous ?</h6>
+                    <p>
+                        Ce site a pour bute de recueillir les convention, des conseil & bien d autre chose pour s amuser dans l univers des manga.
+                        Comment ? Simplement avec des artcile rediger par les organisateur qui vous donnerons les detail des evenements qu il cree.
+                        Mais si vous manquer de detail ou juste donner votre avis vous pourrez vous exprimer via des commentaires.
+                    </p>
+                    <p>Alors bonne experience et amuser vous !</p>
+                    <footer><a class="btn" href="{{ path('app_contact') }}"> Nous contacter</a></footer>
+                </div>
+                <div class="one_half"><a class="imgover" href="#"><img src="img/default/index-min.jpg" alt=""></a></div>
+            </article>
+            <!-- ################################################################################################ -->
+            <!-- / main body -->
+            <div class="clear"></div>
+        </main>
+    </div>
+
+
+    <!-- ################################################################################################ -->
+    <div class="wrapper row2 bgded overlay" style="background-image:url('img/slide/modo.png');">
+        <section class="hoc container clear">
+            <!-- ################################################################################################ -->
+            <div class="sectiontitle">
+                <h6 class="heading">Les createurs du site</h6>
+            </div>
+            <div class="group team">
+                <figure class="one_quarter first"><a class="imgover" href="#"><img src="img/icon/andre.jpg" alt=""></a>
+                    <figcaption>
+                        <h6 class="heading">Andre Colot</h6>
+                        <em>Le createur en chef</em>
+                        <footer>
+                            <ul class="faico clear">
+                                <li><a class="faicon-facebook" href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a></li>
+                                <li><a class="faicon-twitter" href="https://twitter.com/?lang=fr"><i class="fa fa-twitter"></i></a></li>
+                                <li><a class="faicon-dribble" href="https://dribbble.com/"><i class="fa fa-dribbble"></i></a></li>
+                                <li><a class="faicon-linkedin" href="https://fr.linkedin.com/"><i class="fa fa-linkedin"></i></a></li>
+                            </ul>
+                        </footer>
+                    </figcaption>
+                </figure>
+                <figure class="one_quarter"><a class="imgover" href="#"><img src="img/icon/cambier.jpg" alt=""></a>
+                    <figcaption>
+                        <h6 class="heading">Cambier</h6>
+                        <em>Le reparateur</em>
+                        <footer>
+                            <ul class="faico clear">
+                                <li><a class="faicon-facebook" href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a></li>
+                                <li><a class="faicon-twitter" href="https://twitter.com/?lang=fr"><i class="fa fa-twitter"></i></a></li>
+                                <li><a class="faicon-dribble" href="https://dribbble.com/"><i class="fa fa-dribbble"></i></a></li>
+                                <li><a class="faicon-linkedin" href="https://fr.linkedin.com/"><i class="fa fa-linkedin"></i></a></li>
+                            </ul>
+                        </footer>
+                    </figcaption>
+                </figure>
+                <figure class="one_quarter"><a class="imgover" href="#"><img src="img/icon/jerome.jpg" alt=""></a>
+                    <figcaption>
+                        <h6 class="heading">Jerome</h6>
+                        <em>Le modo en chef</em>
+                        <footer>
+                            <ul class="faico clear">
+                                <li><a class="faicon-facebook" href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a></li>
+                                <li><a class="faicon-twitter" href="https://twitter.com/?lang=fr"><i class="fa fa-twitter"></i></a></li>
+                                <li><a class="faicon-dribble" href="https://dribbble.com/"><i class="fa fa-dribbble"></i></a></li>
+                                <li><a class="faicon-linkedin" href="https://fr.linkedin.com/"><i class="fa fa-linkedin"></i></a></li>
+                            </ul>
+                        </footer>
+                    </figcaption>
+                </figure>
+                <figure class="one_quarter"><a class="imgover" href="#"><img src="img/icon/thibault.jpeg" alt=""></a>
+                    <figcaption>
+                        <h6 class="heading">Thibault</h6>
+                        <em>Le redacteur en chef</em>
+                        <footer>
+                            <ul class="faico clear">
+                                <li><a class="faicon-facebook" href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a></li>
+                                <li><a class="faicon-twitter" href="https://twitter.com/?lang=fr"><i class="fa fa-twitter"></i></a></li>
+                                <li><a class="faicon-dribble" href="https://dribbble.com/"><i class="fa fa-dribbble"></i></a></li>
+                                <li><a class="faicon-linkedin" href="https://fr.linkedin.com/"><i class="fa fa-linkedin"></i></a></li>
+                            </ul>
+                        </footer>
+                    </figcaption>
+                </figure>
+            </div>
+            <footer class="center"><a class="btn" href="{{ path('app_contact') }}">Nous contacter</a></footer>
+            <!-- ################################################################################################ -->
+        </section>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,133 @@
+
+
+{# src/AppBundle/Resources/views/Partenaire/index.html.twig #}
+
+{% extends "@App/layout.html.twig" %}
+
+{% block title %}
+    Partenaire - {{ parent() }}
+{% endblock %}
+
+{% block app_header %}
+    {{ asset('./img/slide/partenaire.jpg') }}{{ parent() }}
+{% endblock %}
+
+{% block app_body %}
+
+<!-- debut de l article -->
+<div id="breadcrumb" class="hoc clear">
+    <!-- debut du retour -->
+    <ul>
+        <li><a href="{{ path('app_home') }}">Manga</a></li>
+        <li><a href="{{ path('app_partenaire') }}">Partenaire</a></li>
+    </ul>
+    <!-- fin du retour -->
+</div>
+<!-- fin du header -->
+</div>
+
+
+<!-- ################################################################################################ -->
+</div>
+<!-- End Top Background Image Wrapper -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row3">
+
+
+
+
+        <br/>
+        <!-- main body -->
+        <!-- ################################################################################################ -->
+        <div class="content">
+            <p></p>
+            <table class="base">
+                <caption> <a href="{{ path('app_addpartenaire') }}"> Ajouter un partenaire</a></caption>
+                <tr>
+                    <th>ID</th>
+                    <th>Noms</th>
+                    <th>Rue</th>
+                    <th>Numero</th>
+                    <th>Code postal</th>
+                    <th>Localiter</th>
+
+                    <th>Heure d ouverture</th>
+                    <th>Heure de fermeture</th>
+
+
+
+                    <th>Site Web</th>
+                    <th>Page Facebook</th>
+
+                    <th>Modifier</th>
+                    <th>Supprimer</th>
+                </tr>
+                {% for partenaire in listPartenaire %}
+                    <tr>
+
+                        <td> {{ partenaire.id }}</td>
+                        <td><a href="{{ path('app_viewpartenaire', {'id': partenaire.id}) }}"> {{ partenaire.name }}</a></td>
+                        <td> {{ partenaire.street }}</td>
+                        <td> {{ partenaire.number }}</td>
+                        <td> <a href="{{ path('app_codepartenaire',{'code':partenaire.code}) }}"> {{ partenaire.code }}</a></td>
+                        <td><a href="{{ path('app_localitypartenaire',{'locality':partenaire.locality}) }}"> {{ partenaire.locality }}</a></td>
+
+                        <td> {{ partenaire.timeStart|date('H:i') }}</td>
+                        <td> {{ partenaire.timeEnd|date('H:i') }}</td>
+
+
+                        <td> {{ partenaire.webSite }}</td>
+                        <td> {{ partenaire.facebook }}</td>
+                        <td>
+                            <a href="{{ path('app_editpartenaire',{'id': partenaire.id}) }}">
+                                Modifier
+                            </a>
+                        </td>
+                        <td>
+                            <a href="{{ path('app_deletepartenaire',{'id': partenaire.id}) }}">
+                                X
+                            </a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr><td colspan="12">Pas (encore !) de partenaire mais rester au courant</td></tr>
+                {% endfor %}
+
+            </table>
+
+            </br>
+
+            <!-- ################################################################################################ -->
+
+            <div class="text-center base">
+                {{ knp_pagination_render(listPartenaire) }}
+            </div>
+
+            </br>
+
+            <!-- ################################################################################################ -->
+        </div>
+        <!-- ################################################################################################ -->
+        <!-- / main body -->
+        <div class="clear"></div>
+
+</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+    <div class="wrapper row2 bgded overlay" style="background-image:url('{{ asset('../img/slide/cop.jpg') }}');">
+    <section class="hoc cta clear">
+        <!-- ################################################################################################ -->
+        <div class="sectiontitle">
+            <h6 class="heading">Vous avez quelque chose a dire ?</h6>
+            <p>N hesiter pas a contacter le staff du site pour le moindre probleme</p>
+        </div>
+        <ul class="nospace inline pushright">
+            <li><a class="btn" href="{{ path('app_contact') }}">Contacter nous !</a></li>
+        </ul>
+        <!-- ################################################################################################ -->
+    </section>
+</div>
+{% endblock %}

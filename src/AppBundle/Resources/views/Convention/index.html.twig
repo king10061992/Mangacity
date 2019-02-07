@@ -1,0 +1,101 @@
+
+
+{# src/AppBundle/Resources/views/Partenaire/index.html.twig #}
+
+{% extends "@App/layout.html.twig" %}
+
+{% block title %}
+    Convention - {{ parent() }}
+{% endblock %}
+
+{% block app_header %}
+    {{ asset('./img/slide/convention.jpg') }}{{ parent() }}
+{% endblock %}
+
+{% block app_body %}
+
+
+
+<!-- debut de l article -->
+<div id="breadcrumb" class="hoc clear">
+    <!-- debut du retour -->
+    <ul>
+        <li><a href="{{ path('app_home') }}">Manga</a></li>
+        <li><a href="{{ path('app_convention') }}">Convention</a></li>
+    </ul>
+    <!-- fin du retour -->
+</div>
+
+<!-- fin du header -->
+</div>
+
+<!-- End Top Background Image Wrapper -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row3">
+    <main class="hoc container clear">
+        <!-- main body -->
+        <!-- ################################################################################################ -->
+        <div class="content">
+            <!-- ################################################################################################ -->
+            <h1> Convention </h1>
+
+                <div id="articles">
+                {% for convention in listConvention %}
+                    <article class="group">
+                        <div class="one_half first">
+
+                                <h6 class="heading"> {{ convention.title }} </h6>
+                                <p>
+                                    {{ convention.content|truncate(300, false, "...")}}
+                                </p>
+
+                                <p><a class="btn" href="{{ path('app_viewconvention', {'id': convention.id}) }}"> Plus d info ?</a></p>
+
+                        </div>
+                        <div class="one_half">
+                            <a href="{{ path('app_viewconvention', {'id': convention.id}) }}">
+                                <img
+                                    src="{{ asset(convention.flyers.webPath) }}"
+                                    alt="{{ convention.flyers.alt }}"
+                                >
+                            </a>
+                        </div>
+                    </article>
+                    <br/>
+                {% else %}
+                    <p>Pas (encore !) de convention mais rester au courant</p>
+                {% endfor %}
+            </div>
+
+            <div>
+
+
+            <!-- ################################################################################################ -->
+        </div>
+        <!-- ################################################################################################ -->
+        <!-- / main body -->
+        <div class="clear"></div>
+    </main>
+</div>
+    <div class="text-center">{{ knp_pagination_render(listConvention) }}</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row2 bgded overlay" style="background-image:url('{{ asset('../img/slide/cop.jpg') }}');">
+    <section class="hoc cta clear">
+        <!-- ################################################################################################ -->
+        <div class="sectiontitle">
+            <h6 class="heading">Vous avez quelque chose a dire ?</h6>
+            <p>N hesiter pas a contacter le staff du site pour le moindre probleme</p>
+        </div>
+        <ul class="nospace inline pushright">
+            <li><a class="btn" href="{{ path('app_contact') }}">Contacter nous !</a></li>
+        </ul>
+
+
+        <!-- ################################################################################################ -->
+    </section>
+</div>
+{% endblock %}

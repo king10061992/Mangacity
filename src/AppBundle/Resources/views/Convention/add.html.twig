@@ -1,0 +1,57 @@
+{# src/AppBundle/Resources/views/Convention/add.html.twig #}
+
+{% extends "@App/layout.html.twig" %}
+
+{% block title %}
+    Convention - {{ parent() }}
+{% endblock %}
+
+{% block app_body %}
+
+    <!-- debut de l article -->
+    <div id="breadcrumb" class="hoc clear">
+        <!-- debut du retour -->
+        <ul>
+            <li><a href="{{ path('app_home') }}">Manga</a></li>
+            <li><a href="{{ path('app_convention') }}">Convention</a></li>
+        </ul>
+        <!-- fin du retour -->
+    </div>
+    <!-- fin du header -->
+    <div class="wrapper row3">
+
+    <main class="hoc container clear">
+
+
+    <br/>
+    <!-- main body -->
+    <!-- ################################################################################################ -->
+    <div class="content">
+
+
+    <h1> Rediger une convention </h1>
+    <p> Avant de rediger son profile sur le site soyez certain d avoir toute les donnees relative</p>
+        {{ include("@App/Convention/form.html.twig") }}
+    </div>
+        <div class="clear"></div>
+    </main>
+    </div>
+    <!-- ################################################################################################ -->
+    <!-- ################################################################################################ -->
+    <!-- ################################################################################################ -->
+    <div class="wrapper row2 bgded overlay" style="background-image:url('{{ asset('../img/slide/cop.jpg') }}');">
+        <section class="hoc cta clear">
+            <!-- ################################################################################################ -->
+            <div class="sectiontitle">
+                <h6 class="heading">Vous avez quelque chose a dire ?</h6>
+                <p>N hesiter pas a contacter le staff du site pour le moindre probleme</p>
+            </div>
+            <ul class="nospace inline pushright">
+                <li><a class="btn" href="{{ path('app_contact') }}">Contacter nous !</a></li>
+            </ul>
+            <!-- ################################################################################################ -->
+        </section>
+    </div>
+
+
+{% endblock %}

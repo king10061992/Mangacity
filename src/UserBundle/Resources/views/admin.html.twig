@@ -1,0 +1,110 @@
+
+
+{# src/AppBundle/Resources/views/Partenaire/index.html.twig #}
+
+{% extends "@App/layout.html.twig" %}
+
+{% block title %}
+    Administration - {{ parent() }}
+{% endblock %}
+
+{% block app_header %}
+    {{ asset('./img/slide/partenaire.jpg') }}{{ parent() }}
+{% endblock %}
+
+{% block app_body %}
+
+<!-- debut de l article -->
+<div id="breadcrumb" class="hoc clear">
+    <!-- debut du retour -->
+    <ul>
+        <li><a href="{{ path('app_home') }}">Administration</a></li>
+        <li><a href="{{ path('app_home') }}">Utilisateur</a></li>
+    </ul>
+    <!-- fin du retour -->
+</div>
+<!-- fin du header -->
+</div>
+
+
+<!-- ################################################################################################ -->
+</div>
+<!-- End Top Background Image Wrapper -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row3">
+
+
+
+
+        <br/>
+        <!-- main body -->
+        <!-- ################################################################################################ -->
+        <div class="content">
+            <p></p>
+            <table class="base">
+                <tr>
+                    <th>ID</th>
+                    <th>Pseudo</th>
+                    <th>Noms de familles</th>
+                    <th>Prenoms</th>
+                    <th>Localite</th>
+                    <th>Code postal</th>
+                    <th>email</th>
+                    <th>Derriere fois ou il s est connecter</th>
+                    <th>Ban l utilisateur</th>
+                </tr>
+                {% for users in users %}
+                    <tr>
+
+                        <td> {{ users.id }}</td>
+                        <td> <a href="{{ path('viewUser',{'id':users.id}) }}">{{ users.username }}</a> </td>
+                        <td> {{ users.name }}</td>
+                        <td> {{ users.surname }}</td>
+                        <td> {{ users.locality }}</td>
+                        <td> {{ users.code }}</td>
+                        <td> {{ users.email }} </td>
+                        <td> {{ users.lastLogin|date('d/m/Y H:i',"Europe/Paris")}}</td>
+                        <td>
+                            <a href="{{ path('deleteUser',{'id':users.id}) }}">
+                                X
+                            </a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr><td colspan="12">Pas (encore !) d'utilisateur mais rester au courant</td></tr>
+                {% endfor %}
+
+            </table>
+
+            </br>
+
+            <!-- ################################################################################################ -->
+
+            </br>
+
+            <!-- ################################################################################################ -->
+        </div>
+        <!-- ################################################################################################ -->
+        <!-- / main body -->
+        <div class="clear"></div>
+
+</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+    <div class="wrapper row2 bgded overlay" style="background-image:url('{{ asset('../img/slide/cop.jpg') }}');">
+    <section class="hoc cta clear">
+        <!-- ################################################################################################ -->
+        <div class="sectiontitle">
+            <h6 class="heading">Vous avez quelque chose a dire ?</h6>
+            <p>N hesiter pas a contacter le staff du site pour le moindre probleme</p>
+        </div>
+        <ul class="nospace inline pushright">
+            <li><a class="btn" href="{{ path('app_contact') }}">Contacter nous !</a></li>
+        </ul>
+        <!-- ################################################################################################ -->
+    </section>
+</div>
+{% endblock %}

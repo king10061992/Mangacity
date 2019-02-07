@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <link rel="icon" type="image/png" href="{{ asset('img/default/icone.png') }}" />
+    <title>MangaCity: {% block title %} Welcome {% endblock %}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+
+    {% block stylesheets %}
+        {# On charge le CSS de bootstrap depuis le site directement #}
+        <link href="{{ asset('./css/styles/layout.css') }}" rel="stylesheet" type="text/css" media="all">
+
+    {% endblock %}
+
+</head>
+
+<body id="top">
+
+<!-- Background menu -->
+<div class="bgded overlay light" style="background-image:url({%  block slide %}{% endblock %});">
+    <!-- Menu du dessus -->
+    <div class="wrapper row0">
+        <div id="topbar" class="hoc clear">
+            <!-- Debut menu social -->
+            <ul class="nospace">
+                <li><a href="{{ path('app_home') }}"><i class="fa fa-lg fa-home"></i></a></li>
+                <li><a href="{{ path('app_contact') }}" title="Call Us"><i class="fa fa-phone"></i></a></li>
+                <li><a href="{{ path('app_contact') }}" title="Send a Mail"><i class="fa fa-envelope-o"></i></a></li>
+
+
+                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                    <a href="{{ path('fos_user_profile_show') }}"> Connecté en tant que {{ app.user.username }}</a>
+                    -
+                    <li><a href="{{ path('logout') }}" title="Deconnexion"><i class="fa fa-lg fa-sign-in"></i></a></li>
+                {% else %}
+                    <li><a href="{{ path('login') }}" title="Se connecter"><i class="fa fa-lg fa-sign-in"></i></a></li>
+                    <li><a href="{{ path('fos_user_registration_register') }}" title="S inscrire"><i class="fa fa-lg fa-edit"></i></a></li>
+                {% endif %}
+
+            </ul>
+            <!-- Fin du menu social -->
+        </div>
+    </div>
+
+    <div class="wrapper row1">
+        <header id="header" class="hoc clear">
+            <!-- Debut du menu -->
+
+            <div id="logo" class="fl_left">
+                <h1><a href="{{ path('app_home') }}">Manga City</a></h1>
+            </div>
+
+            <nav id="mainav" class="fl_right">
+                <ul class="clear">
+                    <li><a href="{{ path('app_home') }}">Accueil</a></li>
+                    <li><a href="{{ path('app_convention') }}">Convention</a></li>
+                    <li><a  href="{{ path('app_partenaire') }}">Partenaire</a></li>
+                    <li><a href="{{ path('app_contact') }}">Contact</a></li>
+
+                    {% if is_granted("ROLE_AUTEUR") %}
+                        <li><a class="drop" href="#">Administration</a>
+                            <ul>
+
+                                <li><a href="{{ path('app_adminconvention') }}">Convention</a></li>
+
+                                <li><a class="drop" href="{{ path('app_adminpartenaire') }}">Partenaire</a>
+                                    <ul>
+                                        <li><a href="{{ path('app_adminpartenaire') }}">Partenaire</a></li>
+                                        {% if is_granted("ROLE_AUTEUR") %}
+                                        <li><a href="{{ path('app_productadmin') }}">Categories</a></li>
+                                        <li><a href="{{ path('app_commentspartenaire') }}">Commentaire</a></li>
+                                        {% endif %}
+                                    </ul>
+                                </li>
+                                {% if is_granted("ROLE_AUTEUR") %}
+                                <li><a href="{{ path('app_messagerie') }}">Messagerie</a></li>
+                                <li><a href="{{ path('adminuser') }}">Utilisateur</a></li>
+                                {% endif %}
+                            </ul>
+                        </li>
+                    {% endif %}
+
+                </ul>
+            </nav>
+
+            <!-- Fin du menu -->
+        </header>
+    </div>
+<!--                                                        -->
+
+{% block body %}
+
+{% endblock %}
+
+<!-- Le contenue de la page -->
+
+<!-- Le footer-->
+<div class="wrapper row4">
+    <footer id="footer" class="hoc clear">
+        <!-- ################################################################################################ -->
+        <article class="one_quarter first">
+            <h6 class="heading">Reglementation</h6>
+            <p>En termes de regles nous sommes pas trop serieux mais il y a des regles incontournables</p>
+            <p>DPar exemple: les insultes, commentaire vulgaire, abus de confiance,&hellip; sont punis d un ban</p>
+            <p class="nospace"><a href="{{ path('app_contact') }}">Voir la suite</a></p>
+        </article>
+        <div class="one_quarter">
+            <h6 class="heading">Contact de l ecole</h6>
+            <ul class="nospace btmspace-30 linklist contact">
+                <li><i class="fa fa-map-marker"></i>
+                    <address>
+                        Rue Colard Trouillet 48, Seraing, 4100
+                    </address>
+                </li>
+                <li><i class="fa fa-phone"></i>04 330 72 91</li>
+                <li><i class="fa fa-envelope-o"></i>king10061992@gmail.com</li>
+            </ul>
+            <ul class="faico clear">
+                <li><a class="faicon-facebook" href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a></li>
+                <li><a class="faicon-twitter" href="https://twitter.com/?lang=fr"><i class="fa fa-twitter"></i></a></li>
+                <li><a class="faicon-dribble" href="https://dribbble.com/"><i class="fa fa-dribbble"></i></a></li>
+                <li><a class="faicon-linkedin" href="https://fr.linkedin.com/"><i class="fa fa-linkedin"></i></a></li>
+            </ul>
+        </div>
+        <div class="one_quarter">
+            <h6 class="heading">Mes coordonnees</h6>
+            <ul class="nospace btmspace-30 linklist contact">
+                <li><i class="fa fa-map-marker"></i>
+                    <address>Rue colart trouillet 35, Boncelles, 4020</address>
+                </li>
+                <li><i class="fa fa-phone"></i>Tel: 04</li>
+                <li><i class="fa fa-envelope-o"></i> king10061992@gmail.com</li>
+
+
+            </ul>
+        </div>
+        <div class="one_quarter">
+            <h6 class="heading">Mes liens</h6>
+            <ul class="nospace linklist">
+                <li>Facebook</li>
+                <li>Youtube</li>
+                <li>Instagram</li>
+                <li>Indeed</li>
+                <li>Discord</li>
+            </ul>
+        </div>
+        <!-- Fin footer -->
+    </footer>
+</div>
+
+<!-- Debut du copyright -->
+<div class="wrapper row5">
+    <div id="copyright" class="hoc clear">
+        <!-- Mention legal -->
+        <p class="fl_left">Copyright &copy; 2018 - All Rights Reserved - <a href="#">Manga City</a></p>
+        <p class="fl_right">Template by <a target="_blank" href="https://www.os-templates.com/" title="Free Website Templates">OS Templates</a></p>
+        <!-- Fin des mentions legal -->
+    </div>
+</div>
+
+<!-- Incrustation des lien JS -->
+<a id="backtotop" href="#top"><i class="fa fa-chevron-up"></i></a>
+<!-- JAVASCRIPTS -->
+<script src="layout/scripts/jquery.min.js"></script>
+<script src="layout/scripts/jquery.backtotop.js"></script>
+<script src="layout/scripts/jquery.mobilemenu.js"></script>
+</body>
+</html>

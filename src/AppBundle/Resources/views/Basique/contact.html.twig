@@ -1,0 +1,148 @@
+
+{# src/AppBundle/Resources/views/Advert/contact.html.twig #}
+
+{% extends "@App/layout.html.twig" %}
+
+{% block title %}
+    Contact - {{ parent() }}
+{% endblock %}
+
+{% block app_header %}
+    {{ asset('./img/slide/contact.jpg') }}{{ parent() }}
+{% endblock %}
+
+{% block app_body %}
+
+<!-- debut de l article -->
+<div id="breadcrumb" class="hoc clear">
+    <!-- debut du retour -->
+    <ul>
+        <li><a href="{{ path('app_home') }}">Accueil</a></li>
+        <li><a href="{{ path('app_contact') }}">Contact</a></li>
+    </ul>
+    <!-- fin du retour -->
+</div>
+<!-- fin du header -->
+</div>
+
+
+<!-- ################################################################################################ -->
+</div>
+<!-- End Top Background Image Wrapper -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row3">
+    <main class="hoc container clear">
+        <!-- main body -->
+        <!-- ################################################################################################ -->
+        <div class="content three_quarter first">
+            <!-- ################################################################################################ -->
+            <h1>La reglementation du site</h1>
+            <img class="imgr borderedbox inspace-5" src="../img/default/cop.png" alt="">
+            <p>
+                En termes de regles nous sommes pas trop serieux mais il y a des regles incontournables qu il faut respecter a la lettre sous peine de grave cosequence par rapport vis a vis de votre compte
+            </p>
+            <h3>Par exemple</h3>
+            <p>Restez courtois, poli. Vous pouvez être familier, nous ne vous demandons pas d’écrire comme Molière, nous ne sommes pas à L’Élysée
+
+                Pas de violence verbale gratuite. Vous pouvez taquiner gentiment sans aller dans l’extrême. Si cela reste dans la bonne humeur et le second degré nous le tolérons. Si le staff ou moi même estimons que cela ne respecte plus la règle, vous risquez un kick ou un ban en fonction de l’humeur de la personne qui s'occupe de votre cas (en général c’est un ban direct avec moi)</p>
+            <h1>Les permission des differents grades</h1>
+            <div class="scrollable">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Les grades</th>
+                        <th>Utilisateur</th>
+                        <th>Redacteur</th>
+                        <th>Administrateur</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Commentaire</td>
+                        <td>V</td>
+                        <td>V</td>
+                        <td>V</td>
+                    </tr>
+                    <tr>
+                        <td>Messagerie Interne</td>
+                        <td>X</td>
+                        <td>X</td>
+                        <td>V</td>
+                    </tr>
+                    <tr>
+                        <td>Publication</td>
+                        <td>X</td>
+                        <td>V</td>
+                        <td>V</td>
+                    </tr>
+                    <tr>
+                        <td>Acces au donner utilisateur</td>
+                        <td>X</td>
+                        <td>X</td>
+                        <td>V</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div id="comments">
+                <h2>Nous contacter</h2>
+                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                    {{ form(form) }}
+                {% else %}
+                    <a href="{{ path('login') }}"> Se connnecter pour nous envoye un message </a></p>
+                {% endif %}
+            </div>
+            <!-- ################################################################################################ -->
+        </div>
+        <!-- ################################################################################################ -->
+        <!-- ################################################################################################ -->
+        <div class="sidebar one_quarter">
+            <!-- ################################################################################################ -->
+            <h6>Navigation basique</h6>
+            <nav class="sdb_holder">
+                <ul>
+                    <li><a href="{{ path('app_home') }}">Accueil</a></li>
+                    <li><a href="{{ path('app_convention') }}">Convention</a></li>
+                    <li><a href="{{ path('app_partenaire') }}">Partenaire</a></li>
+                    <li><a href="{{ path('app_contact') }}">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="sdb_holder">
+                <h6>Coordonnee</h6>
+                <address>
+                    Manga City<br>
+                    Rue Colard Trouillet 48,<br>
+                    Seraing<br>
+                    4100<br>
+                    <br>
+                    Tel: 04 330 72 91<br>
+                    Email: <a href="#">king10061992@gmail.com</a>
+                </address>
+            </div>
+
+            <!-- ################################################################################################ -->
+        </div>
+        <!-- ################################################################################################ -->
+        <!-- / main body -->
+        <div class="clear"></div>
+    </main>
+</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row2 bgded overlay" style="background-image:url('../img/slide/cop.jpg');">
+    <section class="hoc cta clear">
+        <!-- ################################################################################################ -->
+        <div class="sectiontitle">
+            <h6 class="heading">Vous avez quelque chose a dire ?</h6>
+            <p>N hesiter pas a contacter le staff du site pour le moindre probleme</p>
+        </div>
+        <ul class="nospace inline pushright">
+            <li><a class="btn" href="{{ path('app_contact') }}">Contacter nous !</a></li>
+        </ul>
+        <!-- ################################################################################################ -->
+    </section>
+</div>
+{% endblock %}

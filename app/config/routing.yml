@@ -1,0 +1,33 @@
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+app:
+    resource: "@AppBundle/Resources/config/routing.yml"
+    prefix: /
+
+user:
+    resource: "@UserBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+
+login_check:
+    path: /login_check
+
+logout:
+    path: /logout
+
+deleteUser:
+    path: /Ban{id}
+    defaults:
+        _controller: UserBundle:Security:deleteUser
+
+viewUser:
+    path: /user:{id}
+    defaults:
+        _controller: UserBundle:Security:viewUser
+
+adminuser:
+    path: /adminUser
+    defaults:
+        _controller: UserBundle:Security:admin

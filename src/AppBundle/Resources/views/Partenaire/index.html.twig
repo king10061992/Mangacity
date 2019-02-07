@@ -1,0 +1,125 @@
+
+
+{# src/AppBundle/Resources/views/Partenaire/index.html.twig #}
+
+{% extends "@App/layout.html.twig" %}
+
+{% block title %}
+    Partenaire - {{ parent() }}
+{% endblock %}
+
+{% block app_header %}
+    {{ asset('./img/slide/partenaire.jpg') }}{{ parent() }}
+{% endblock %}
+
+{% block app_body %}
+
+<!-- debut de l article -->
+<div id="breadcrumb" class="hoc clear">
+    <!-- debut du retour -->
+    <ul>
+        <li><a href="{{ path('app_home') }}">Manga</a></li>
+        <li><a href="{{ path('app_partenaire') }}">Partenaire</a></li>
+    </ul>
+    <!-- fin du retour -->
+</div>
+
+        <section class="hoc cta clear">
+            <!-- ################################################################################################ -->
+            <div class="sectiontitle">
+                <h6 class="heading">Rechercher un partenaire</h6>
+            </div>
+
+            {{form(form)}}
+
+            <!-- ################################################################################################ -->
+        </section>
+
+
+    <!-- fin du header -->
+</div>
+
+
+<!-- ################################################################################################ -->
+</div>
+<!-- End Top Background Image Wrapper -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row3">
+
+    <main class="hoc container clear">
+
+
+        <br/>
+        <!-- main body -->
+        <!-- ################################################################################################ -->
+        <div class="content">
+
+            <!-- ################################################################################################ -->
+            <div id="gallery">
+                <figure>
+                    <header class="heading">Partenaire / Commercant / Cosplayer </header>
+                    <ul class="nospace clear">
+                        {% for partenaire in listPartenaire %}
+                            {% if loop.first %}
+                                <li class="one_quarter first">
+                                    <a href="{{ path('app_viewpartenaire', {'id': partenaire.id}) }}">
+                                        <img
+                                            src="{{ asset(partenaire.logo.webPath) }}"
+
+                                        >
+                                    </a>
+                                </li>
+                            {% elseif (loop.index0) is divisible by(4) %}
+                                <li class="one_quarter first">
+                                    <a href="{{ path('app_viewpartenaire', {'id': partenaire.id}) }}">
+                                        <img src="{{ asset(partenaire.logo.webPath) }}" alt="{{ partenaire.logo.alt }}">
+                                    </a>
+                                </li>
+                            {% else %}
+                                <li class="one_quarter">
+                                    <a href="{{ path('app_viewpartenaire', {'id': partenaire.id}) }}">
+                                        <img
+                                            src="{{ asset(partenaire.logo.webPath) }}"
+                                            alt="{{ partenaire.logo.alt }}"
+                                        >
+                                    </a>
+                                </li>
+                        {% endif %}
+                        {% else %}
+                            <p>Il n y a pas de partenaire mais n hesiter pas a nous soutenir</p>
+                        {% endfor %}
+                    </ul>
+                    <figcaption>Partenaire du site</figcaption>
+                </figure>
+            </div>
+            <!-- ################################################################################################ -->
+            <!-- ################################################################################################ -->
+
+            <div class="text-center">{{ knp_pagination_render(listPartenaire) }}</div>
+
+            <!-- ################################################################################################ -->
+        </div>
+        <!-- ################################################################################################ -->
+        <!-- / main body -->
+        <div class="clear"></div>
+    </main>
+</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+    <div class="wrapper row2 bgded overlay" style="background-image:url('{{ asset('../img/slide/cop.jpg') }}');">
+    <section class="hoc cta clear">
+        <!-- ################################################################################################ -->
+        <div class="sectiontitle">
+            <h6 class="heading">Vous avez quelque chose a dire ?</h6>
+            <p>N hesiter pas a contacter le staff du site pour le moindre probleme</p>
+        </div>
+        <ul class="nospace inline pushright">
+            <li><a class="btn" href="{{ path('app_contact') }}">Contacter nous !</a></li>
+        </ul>
+        <!-- ################################################################################################ -->
+    </section>
+</div>
+{% endblock %}

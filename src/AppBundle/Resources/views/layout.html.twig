@@ -1,0 +1,17 @@
+{# src/AppBundle/Resources/views/layout.html.twig #}
+
+{% extends "layout.html.twig" %}
+
+{% block slide %}
+    {% block app_header %}
+
+    {% endblock %}
+{% endblock %}
+
+{% block body %}
+
+    {# On définit un nouveau bloc, que les vues du bundle pourront remplir #}
+    {% block app_body %}
+    {% endblock %}
+
+{% endblock %}

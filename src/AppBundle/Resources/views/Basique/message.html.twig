@@ -1,0 +1,110 @@
+
+
+{# src/AppBundle/Resources/views/Basique/message.html.twig #}
+
+{% extends "@App/layout.html.twig" %}
+
+{% block title %}
+    Messagerie - {{ parent() }}
+{% endblock %}
+
+{% block app_header %}
+    {{ asset('./img/slide/convention.jpg') }}{{ parent() }}
+{% endblock %}
+
+{% block app_body %}
+
+
+
+    <!-- debut de l article -->
+    <div id="breadcrumb" class="hoc clear">
+        <!-- debut du retour -->
+        <ul>
+            <li><a href="{{ path('app_contact') }}">Contact</a></li>
+            <li><a href="{{ path('app_messagerie') }}">Message</a></li>
+        </ul>
+        <!-- fin du retour -->
+    </div>
+    <!-- fin du header -->
+    </div>
+
+    <!-- End Top Background Image Wrapper -->
+    <!-- ################################################################################################ -->
+    <!-- ################################################################################################ -->
+    <!-- ################################################################################################ -->
+    <div class="wrapper row3">
+        <div class="base">
+            <!-- main body -->
+            <!-- ################################################################################################ -->
+            <div class="content">
+                <!-- ################################################################################################ -->
+                <h1> Message </h1>
+                <table>
+                    <tr>
+                        <th>ID</th>
+                        <th>Date</th>
+                        <th>Sujet</th>
+                        <th>Auteur</th>
+                        <th>Content</th>
+                        <th>Voir</th>
+                        <th>Supprimer</th>
+                    </tr>
+                    {% for message in listMessage %}
+                        <tr>
+
+                                <td> {{ message.id }}</td>
+                                <td> {{ message.timePost|date('d m Y - H:i') }}</td>
+                                <td> {{ message.subject }}</td>
+                                <td> {{ message.author }}</td>
+                                <td> {{ message.content }}</td>
+
+                            <td>
+                                <a href="{{ path('app_viewmessage',{'id': message.id}) }}">
+                                    Lire
+                                </a>
+                            </td>
+                            <td>
+                                <a href="{{ path('app_deletemessage',{'id': message.id}) }}">
+                                    X
+                                </a>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr><td colspan="7">Pas (encore !) de message mais rester au courant</td></tr>
+                    {% endfor %}
+
+                </table>
+
+
+                <div>
+
+                    <!-- ################################################################################################ -->
+                    <!-- ################################################################################################ -->
+
+                    <div class="text-center">{{ knp_pagination_render(listMessage) }}</div>
+
+                    <!-- ################################################################################################ -->
+                </div>
+                <!-- ################################################################################################ -->
+                <!-- / main body -->
+                <div class="clear"></div>
+            </div>
+    </div>
+
+    <!-- ################################################################################################ -->
+    <!-- ################################################################################################ -->
+    <!-- ################################################################################################ -->
+    <div class="wrapper row2 bgded overlay" style="background-image:url('{{ asset('../img/slide/cop.jpg') }}');">
+        <section class="hoc cta clear">
+            <!-- ################################################################################################ -->
+            <div class="sectiontitle">
+                <h6 class="heading">Vous avez quelque chose a dire ?</h6>
+                <p>N hesiter pas a contacter le staff du site pour le moindre probleme</p>
+            </div>
+            <ul class="nospace inline pushright">
+                <li><a class="btn" href="{{ path('app_contact') }}">Contacter nous !</a></li>
+            </ul>
+            <!-- ################################################################################################ -->
+        </section>
+    </div>
+{% endblock %}
